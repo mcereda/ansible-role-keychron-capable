@@ -1,0 +1,22 @@
+---
+- name: Load the "hid_apple" module now
+  become: yes
+  community.general.modprobe:
+    name: hid_apple
+    state: present
+    params: "{{ 'fnmode=0' if enable_keyboard_fn_mode else omit }}"
+
+- name: Load the "hid_apple" module at boot
+  become: yes
+  ansible.builtin.lineinfile:
+    path: "{{ module_file_name }}"
+    line: hid_apple
+    mode: '0644'
+
+- name: Enable the keyboard's fn mode at boot
+  when: enable_keyboard_fn_mode
+  become: yes
+  ansible.builtin.lineinfile:
+    path: "{{ modprobe_file_name }}"
+    line: options hid_apple fnmode=0
+    mode: '0644'

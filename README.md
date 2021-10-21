@@ -35,7 +35,7 @@ The changes this role makes:
 
 Variable                | Default value              | Description
 ------------------------|----------------------------|------------
-fast_connectable        | `yes`                      | Enable fast reconnect via Bluetooth
+fast_connectable        | `true`                     | Enable fast reconnect via Bluetooth
 fn_mode                 | `0`                        | Function keys mode: `0` = shortcuts, `1` = use last setting, `2` = function
 module_name             | `hid_apple`                | Module to load
 module_file_name        | `keychron.conf`            | File name for module loading on boot; will be put into `/etc/modules-load.d`
@@ -53,7 +53,7 @@ None.
   roles:
     - role: keychron_capable
       vars:
-        tune_bluetooth: yes
+        tune_bluetooth: true
         fast_connectable: no
         fn_mode: 2
         module_file_name: hid_apple.conf

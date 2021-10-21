@@ -1,29 +1,29 @@
 ---
 - name: "Load the '{{ module_name }}' module now"
-  become: yes
+  become: true
   community.general.modprobe:
     name: "{{ module_name }}"
     state: present
     params: "fnmode={{ fn_mode|string }}"
 
 - name: "Load the '{{ module_name }}' module at boot"
-  become: yes
+  become: true
   ansible.builtin.lineinfile:
     path: "/etc/modules-load.d/{{ module_file_name }}"
     line: "{{ module_name }}"
     mode: '0644'
-    create: yes
-    backup: yes
+    create: true
+    backup: true
   tags:
     - boot
 
 - name: Set the keyboard's fn mode at boot
-  become: yes
+  become: true
   ansible.builtin.lineinfile:
     path: "/etc/modprobe.d/{{ module_params_file_name }}"
     line: "options {{ module_name }} fnmode={{ fn_mode|string }}"
     mode: '0644'
-    create: yes
-    backup: yes
+    create: true
+    backup: true
   tags:
     - boot

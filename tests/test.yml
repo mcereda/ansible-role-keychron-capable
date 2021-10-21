@@ -5,6 +5,6 @@
     - keychron_capable
     - role: keychron_capable
       vars:
-        fast_connectable: no
+        fast_connectable: false
         fn_mode: 2
         module_file_name: hid_apple.conf

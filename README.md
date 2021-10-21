@@ -1,6 +1,6 @@
 # Keychron Capable
 
-Enables the system to accept input from the keyboard's function keys row.
+Enables a **Linux** system to accept input from a Keychron keyboard's function keys row.
 
 Example of manual process:
 
@@ -26,7 +26,10 @@ Example of manual process:
 
 ## Requirements
 
-These changes work better if you are using a Keychron keyboard.
+The changes this role makes:
+
+- **only** work on (and are only applied to) a Linux system
+- will work better if you are using a Keychron keyboard
 
 ## Role Variables
 

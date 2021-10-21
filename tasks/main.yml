@@ -1,5 +1,6 @@
 ---
 - name: Setup the kernel module
+  when: ansible_system|lower == 'linux'
   include_tasks:
     file: kernel.yml
     apply:
@@ -10,7 +11,9 @@
   - always
 
 - name: Tune Bluetooth settings
-  when: tune_bluetooth
+  when:
+  - ansible_system|lower == 'linux'
+  - tune_bluetooth
   include_tasks:
     file: bluetooth.yml
     apply:

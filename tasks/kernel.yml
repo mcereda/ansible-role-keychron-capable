@@ -15,7 +15,7 @@
     create: yes
     backup: yes
   tags:
-  - boot
+    - boot
 
 - name: Set the keyboard's fn mode at boot
   become: yes
@@ -26,4 +26,4 @@
     create: yes
     backup: yes
   tags:
-  - boot
+    - boot

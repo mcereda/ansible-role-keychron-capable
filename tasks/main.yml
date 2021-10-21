@@ -5,19 +5,19 @@
     file: kernel.yml
     apply:
       tags:
-      - kernel
-      - module
+        - kernel
+        - module
   tags:
-  - always
+    - always
 
 - name: Tune Bluetooth settings
   when:
-  - ansible_system|lower == 'linux'
-  - tune_bluetooth
+    - ansible_system|lower == 'linux'
+    - tune_bluetooth
   include_tasks:
     file: bluetooth.yml
     apply:
       tags:
-      - bluetooth
+        - bluetooth
   tags:
-  - always
+    - always

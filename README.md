@@ -1,4 +1,4 @@
-# Role Name
+# Keychron Capable
 
 Enables the system to accept input from the keyboard's function keys row.
 

@@ -69,3 +69,5 @@ MIT
 [apple keyboard]: https://wiki.archlinux.org/index.php/Apple_Keyboard
 [k8 keyboard user manual]: https://www.keychron.com/pages/k8-keyboard-user-manual
 [keychron fn keys in linux]: https://mikeshade.com/posts/keychron-linux-function-keys
+
+[archlinux wiki]: https://wiki.archlinux.org

@@ -1,0 +1,10 @@
+---
+- name: Enable faster reconnect via Bluetooth
+  become: yes
+  ansible.builtin.lineinfile:
+    path: "/etc/bluetooth/main.conf"
+    line: "FastConnectable = {{ fast_connectable|bool|string|lower }}"
+    regexp: '^.*FastConnectable\s*=\s*.*$'
+    mode: '0644'
+    create: yes
+    backup: yes

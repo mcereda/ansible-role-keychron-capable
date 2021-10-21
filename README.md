@@ -36,8 +36,8 @@ fast_connectable        | `yes`                      | Enable fast reconnect via
 fn_mode                 | `0`                        | Function keys mode: `0` = shortcuts, `1` = use last setting, `2` = function
 module_name             | `hid_apple`                | Module to load
 module_file_name        | `keychron.conf`            | File name for module loading on boot; will be put into `/etc/modules-load.d`
-module_params_file_name | same as `module_file_name` | File name for module configuration
-use_bluetooth           | `no`                       | Change/check Bluetooth settings
+module_params_file_name | same as `module_file_name` | File name for module configuration; will be put into `/etc/modprobe.d/`
+tune_bluetooth          | `no`                       | Tune Bluetooth settings
 
 ## Dependencies
 
@@ -50,7 +50,7 @@ None.
   roles:
     - role: keychron_capable
       vars:
-        use_bluetooth: yes
+        tune_bluetooth: yes
         fast_connectable: no
         fn_mode: 2
         module_file_name: hid_apple.conf

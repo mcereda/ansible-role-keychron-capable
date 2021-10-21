@@ -4,5 +4,5 @@ module_name: hid_apple
 module_file_name: keychron.conf
 module_params_file_name: "{{ module_file_name }}"
 
-use_bluetooth: no
+tune_bluetooth: no
 fast_connectable: yes

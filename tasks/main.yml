@@ -1,36 +1,20 @@
 ---
-- name: "Load the '{{ module_name }}' module now"
-  become: yes
-  community.general.modprobe:
-    name: "{{ module_name }}"
-    state: present
-    params: "fnmode={{ fn_mode|string }}"
+- name: Setup the kernel module
+  include_tasks:
+    file: kernel.yml
+    apply:
+      tags:
+      - kernel
+      - module
+  tags:
+  - always
 
-- name: "Load the '{{ module_name }}' module at boot"
-  become: yes
-  ansible.builtin.lineinfile:
-    path: "/etc/modules-load.d/{{ module_file_name }}"
-    line: "{{ module_name }}"
-    mode: '0644'
-    create: yes
-    backup: yes
-
-- name: Set the keyboard's fn mode at boot
-  become: yes
-  ansible.builtin.lineinfile:
-    path: "/etc/modprobe.d/{{ module_params_file_name }}"
-    line: "options {{ module_name }} fnmode={{ fn_mode|string }}"
-    mode: '0644'
-    create: yes
-    backup: yes
-
-- name: Enable faster reconnect via Bluetooth
-  when: use_bluetooth
-  become: yes
-  ansible.builtin.lineinfile:
-    path: "/etc/bluetooth/main.conf"
-    line: "FastConnectable = {{ fast_connectable|bool|string|lower }}"
-    regexp: '^.*FastConnectable\s*=\s*.*$'
-    mode: '0644'
-    create: yes
-    backup: yes
+- name: Tune Bluetooth settings
+  when: tune_bluetooth
+  include_tasks:
+    file: bluetooth.yml
+    apply:
+      tags:
+      - bluetooth
+  tags:
+  - always

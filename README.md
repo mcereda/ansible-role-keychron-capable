@@ -1,47 +1,11 @@
-Role Name
-=========
+# Role Name
 
-A brief description of the role goes here.
+Enables the system to accept input from the keyboard's function keys row.
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
-
+Example of manual process:
 
 1. set the keyboard to _Windows mode_ using the side switch
-
 1. hold `Fn + X + L` for 4 seconds to set the function key row to _fn mode_
-
 1. ensure the `hid_apple` module is loaded
 
    ```shell
@@ -60,7 +24,43 @@ An optional section for the role authors to include contact information, or a we
    echo 'options hid_apple fnmode=0' | sudo tee /etc/modprobe.d/keychron.conf
    ```
 
-## Further readings
+## Requirements
+
+These changes work better if you are using a Keychron keyboard.
+
+## Role Variables
+
+Variable                | Default value              | Description
+------------------------|----------------------------|------------
+fast_connectable        | `yes`                      | Enable fast reconnect via Bluetooth
+fn_mode                 | `0`                        | Function keys mode: `0` = shortcuts, `1` = use last setting, `2` = function
+module_name             | `hid_apple`                | Module to load
+module_file_name        | `keychron.conf`            | File name for module loading on boot; will be put into `/etc/modules-load.d`
+module_params_file_name | same as `module_file_name` | File name for module configuration
+use_bluetooth           | `no`                       | Change/check Bluetooth settings
+
+## Dependencies
+
+None.
+
+## Example Playbook
+
+```yaml
+- hosts: workstation
+  roles:
+    - role: keychron_capable
+      vars:
+        use_bluetooth: yes
+        fast_connectable: no
+        fn_mode: 2
+        module_file_name: hid_apple.conf
+```
+
+## License
+
+MIT
+
+## Sources
 
 - [K8 keyboard user manual]
 - [Keychron fn keys in Linux]

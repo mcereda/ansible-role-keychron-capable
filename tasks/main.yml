@@ -1,22 +1,36 @@
 ---
-- name: Load the "hid_apple" module now
+- name: "Load the '{{ module_name }}' module now"
   become: yes
   community.general.modprobe:
-    name: hid_apple
+    name: "{{ module_name }}"
     state: present
-    params: "{{ 'fnmode=0' if enable_keyboard_fn_mode else omit }}"
+    params: "fnmode={{ fn_mode|string }}"
 
-- name: Load the "hid_apple" module at boot
+- name: "Load the '{{ module_name }}' module at boot"
   become: yes
   ansible.builtin.lineinfile:
-    path: "{{ module_file_name }}"
-    line: hid_apple
+    path: "/etc/modules-load.d/{{ module_file_name }}"
+    line: "{{ module_name }}"
     mode: '0644'
+    create: yes
+    backup: yes
 
-- name: Enable the keyboard's fn mode at boot
-  when: enable_keyboard_fn_mode
+- name: Set the keyboard's fn mode at boot
   become: yes
   ansible.builtin.lineinfile:
-    path: "{{ modprobe_file_name }}"
-    line: options hid_apple fnmode=0
+    path: "/etc/modprobe.d/{{ module_params_file_name }}"
+    line: "options {{ module_name }} fnmode={{ fn_mode|string }}"
     mode: '0644'
+    create: yes
+    backup: yes
+
+- name: Enable faster reconnect via Bluetooth
+  when: use_bluetooth
+  become: yes
+  ansible.builtin.lineinfile:
+    path: "/etc/bluetooth/main.conf"
+    line: "FastConnectable = {{ fast_connectable|bool|string|lower }}"
+    regexp: '^.*FastConnectable\s*=\s*.*$'
+    mode: '0644'
+    create: yes
+    backup: yes

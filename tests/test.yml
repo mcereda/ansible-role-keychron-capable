@@ -3,3 +3,8 @@
   remote_user: root
   roles:
     - keychron_capable
+    - role: keychron_capable
+      vars:
+        fast_connectable: no
+        fn_mode: 2
+        module_file_name: hid_apple.conf

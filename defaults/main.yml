@@ -1,6 +1,8 @@
 ---
-enable_hid_apple_module: yes
-module_file_name: /etc/modules-load.d/keychron.conf
+fn_mode: 0
+module_name: hid_apple
+module_file_name: keychron.conf
+module_params_file_name: "{{ module_file_name }}"
 
-enable_keyboard_fn_mode: yes
-modprobe_file_name: /etc/modprobe.d/keychron.conf
+use_bluetooth: no
+fast_connectable: yes

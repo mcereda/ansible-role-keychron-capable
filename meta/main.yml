@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: keychron_capable
   author: mcereda
-  description: Enable
+  description: Enable the function row of a Keychron keyboard to be used on a linux system
   license: MIT
   min_ansible_version: 2.1
   platforms:
@@ -10,6 +10,8 @@ galaxy_info:
       versions:
         - all
 
-  galaxy_tags: []
+  galaxy_tags:
+    - keyboard
+    - keychron
 
 dependencies: []

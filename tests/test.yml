@@ -2,8 +2,10 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - keychron_capable
     - role: keychron_capable
+      tags:
+        - keyboard
+        - keychron
       vars:
         fast_connectable: false
         fn_mode: 2

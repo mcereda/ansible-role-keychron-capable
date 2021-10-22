@@ -52,6 +52,9 @@ None.
 - hosts: workstation
   roles:
     - role: keychron_capable
+      tags:
+        - keyboard
+        - keychron
       vars:
         tune_bluetooth: true
         fast_connectable: no

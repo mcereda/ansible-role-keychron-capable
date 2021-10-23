@@ -35,6 +35,7 @@ The changes this role makes:
 
 Variable                | Type    | Default value              | Description
 ------------------------|---------|----------------------------|------------
+auto_enable             | boolean | `true`                     | Enable all Bluetooth controllers as soon as they are found
 fast_connectable        | boolean | `true`                     | Enable fast reconnect via Bluetooth
 fn_mode                 | integer | 0                          | Default fn keys behavior: `0` = multimedia, `1` = use last setting, `2` = function
 module_name             | string  | hid_apple                  | Module to load
@@ -57,7 +58,7 @@ None.
         - keychron
       vars:
         tune_bluetooth: true
-        fast_connectable: no
+        fast_connectable: false
         fn_mode: 2
         module_file_name: hid_apple.conf
 ```

@@ -1,10 +1,21 @@
 ---
-- name: Enable faster reconnect via Bluetooth
+- name: Enable faster connection to devices using Bluetooth
   become: true
   ansible.builtin.lineinfile:
     path: "/etc/bluetooth/main.conf"
     line: "FastConnectable = {{ fast_connectable|bool|string|lower }}"
     regexp: '^.*FastConnectable\s*=\s*.*$'
+    insertafter: '^[General]$'
+    mode: '0644'
+    create: true
+    backup: true
+- name: Enable all controllers as soon as they are found
+  become: true
+  ansible.builtin.lineinfile:
+    path: "/etc/bluetooth/main.conf"
+    line: "AutoEnable = {{ auto_enable|bool|string|lower }}"
+    regexp: '^.*AutoEnable\s*=\s*.*$'
+    insertafter: '^[Policy]$'
     mode: '0644'
     create: true
     backup: true

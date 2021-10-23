@@ -5,4 +5,5 @@ module_file_name: keychron.conf
 module_params_file_name: "{{ module_file_name }}"
 
 tune_bluetooth: false
+auto_enable: true
 fast_connectable: true

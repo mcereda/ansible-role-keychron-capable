@@ -33,14 +33,14 @@ The changes this role makes:
 
 ## Role Variables
 
-Variable                | Default value              | Description
-------------------------|----------------------------|------------
-fast_connectable        | `true`                     | Enable fast reconnect via Bluetooth
-fn_mode                 | `0`                        | Default fn keys behavior: `0` = multimedia, `1` = use last setting, `2` = function
-module_name             | `hid_apple`                | Module to load
-module_file_name        | `keychron.conf`            | File name for module loading on boot; will be put into `/etc/modules-load.d`
-module_params_file_name | same as `module_file_name` | File name for module configuration; will be put into `/etc/modprobe.d`
-tune_bluetooth          | `no`                       | Tune Bluetooth settings
+Variable                | Type    | Default value              | Description
+------------------------|---------|----------------------------|------------
+fast_connectable        | boolean | `true`                     | Enable fast reconnect via Bluetooth
+fn_mode                 | integer | 0                          | Default fn keys behavior: `0` = multimedia, `1` = use last setting, `2` = function
+module_name             | string  | hid_apple                  | Module to load
+module_file_name        | string  | keychron.conf              | File name for module loading on boot; will be put into `/etc/modules-load.d`
+module_params_file_name | string  | same as `module_file_name` | File name for module configuration; will be put into `/etc/modprobe.d`
+tune_bluetooth          | boolean | `no`                       | Tune Bluetooth settings
 
 ## Dependencies
 

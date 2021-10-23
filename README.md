@@ -41,7 +41,7 @@ fn_mode                 | integer | 0                          | Default fn keys
 module_name             | string  | hid_apple                  | Module to load
 module_file_name        | string  | keychron.conf              | File name for module loading on boot; will be put into `/etc/modules-load.d`
 module_params_file_name | string  | same as `module_file_name` | File name for module configuration; will be put into `/etc/modprobe.d`
-tune_bluetooth          | boolean | `no`                       | Tune Bluetooth settings
+tune_bluetooth          | boolean | `false`                    | Tune Bluetooth settings
 
 ## Dependencies
 
